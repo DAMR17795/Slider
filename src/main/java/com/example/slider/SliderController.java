@@ -2,13 +2,19 @@ package com.example.slider;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class SliderController {
     @FXML
-    private Label welcomeText;
+    private Slider slider;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    private Text numero;
+
+    @FXML
+    protected void updateText(MouseEvent event) {
+        numero.setText(String.valueOf((int)slider.getValue()));
     }
 }
