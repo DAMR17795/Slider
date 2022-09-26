@@ -27,7 +27,7 @@ public class SliderApplication extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Scene scene = new Scene(grid, 300, 275);
+        Scene scene = new Scene(grid, 600, 250);
         stage.setScene(scene);
         stage.setTitle("Slider Wiki");
         stage.show();
@@ -39,6 +39,7 @@ public class SliderApplication extends Application {
 
         //Creacion de Slider
         Slider slider = new Slider();
+        slider.setPrefSize(600, 200);
 
         //Valor minimo de Slider
         slider.setMin(0);
@@ -56,13 +57,16 @@ public class SliderApplication extends Application {
         slider.setShowTickMarks(true);
 
         //Establecer mayor unidad entre valores
-        //slider.setMajorTickUnit(50);
+        slider.setMajorTickUnit(25);
 
         //Establecer menor unidad entre valores
         slider.setMinorTickCount(5);
 
         //Establecer distancia que se mueve el cursor por la pista al hacerle click en ella
-        slider.setBlockIncrement(10);
+        //slider.setBlockIncrement(10);
+
+        //Mantener valor en las marcas de verificacion
+        slider.setSnapToTicks(true);
 
         //Label numerico
         Label numero = new Label("50");
