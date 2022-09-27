@@ -63,7 +63,7 @@ public class SliderApplication extends Application {
         slider.setMinorTickCount(5);
 
         //Establecer distancia que se mueve el cursor por la pista al hacerle click en ella
-        //slider.setBlockIncrement(10);
+        slider.setBlockIncrement(10);
 
         //Mantener valor en las marcas de verificacion
         slider.setSnapToTicks(true);
