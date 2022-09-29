@@ -22,6 +22,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SliderApplication extends Application {
+    public int metodoEntero (int numero) {
+        String convertir = String.valueOf(numero);
+        String[] parte = convertir.split(".");
+        return Integer.parseInt(parte[0]);
+    }
     @Override
     public void start(Stage stage) throws IOException {
         GridPane grid = new GridPane();
@@ -91,22 +96,29 @@ public class SliderApplication extends Application {
 
         //Metodo raton clickado
 
-        slider.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+       slider.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 numero.setText(String.valueOf((int)slider.getValue()));
             }
         });
 
-        //Listener
+        //Listener - Incremento de 10 en 10 con flechas del teclado
         slider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 numero.setText(String.valueOf((int)slider.getValue()));
             }
         });
-    }
 
+        //Incremento de 5 en 5
+        /*final ChangeListener<Number> numberChangeListener = (obs, old, val) -> {
+            final double roundedValue = Math.floor(val.doubleValue() / 5.0) * 5.0;
+            slider.valueProperty().set(roundedValue);
+            numero.setText(Double.toString(roundedValue));
+        };
+        slider.valueProperty().addListener(numberChangeListener);*/
+    }
     public static void main(String[] args) {
         launch();
     }
