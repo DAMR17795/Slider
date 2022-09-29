@@ -1,7 +1,11 @@
 package com.example.slider;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -62,10 +66,10 @@ public class SliderApplication extends Application {
         slider.setMinorTickCount(5);
 
         //Establecer distancia que se mueve el cursor por la pista al hacerle click en ella
-        slider.setBlockIncrement(5);
+        slider.setBlockIncrement(10);
 
         //Mantener valor en las marcas de verificacion
-        slider.setSnapToTicks(true);
+        //slider.setSnapToTicks(true);
 
         //Label numerico
         Label numero = new Label("50");
@@ -90,6 +94,14 @@ public class SliderApplication extends Application {
         slider.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                numero.setText(String.valueOf((int)slider.getValue()));
+            }
+        });
+
+        //Listener
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 numero.setText(String.valueOf((int)slider.getValue()));
             }
         });

@@ -1,6 +1,8 @@
 package com.example.slider;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -36,7 +38,7 @@ public class SliderVertical extends Application {
         stage.show();
 
         //Titulo EjemploSlider
-        Text scenetitle = new Text("Ejemplo de Slider");
+        Text scenetitle = new Text("Ejemplo de Slider Termómetro");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
 
@@ -69,7 +71,7 @@ public class SliderVertical extends Application {
         slider.setBlockIncrement(10);
 
         //Mantener valor en las marcas de verificacion
-        slider.setSnapToTicks(true);
+        //slider.setSnapToTicks(true);
 
         //Orientacion
         slider.setOrientation(Orientation.VERTICAL);
@@ -98,6 +100,14 @@ public class SliderVertical extends Application {
         slider.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                numero.setText(String.valueOf((int)slider.getValue()));
+            }
+        });
+
+        //Listener
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 numero.setText(String.valueOf((int)slider.getValue()));
             }
         });
